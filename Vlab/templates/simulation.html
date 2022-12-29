@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!--Scripts for icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Simulation</title>
+    <style>
+        .controls {
+            margin-top: 40px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .controls button {
+            margin-left: 10px;
+        }
+        .simulation{
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+        }
+        #first_comment,
+        #second_comment,
+        #third_comment,
+        #final_comment {
+            display: none;
+        }
+        .blink {
+          animation: blink-animation 1s steps(5, start) infinite;
+          -webkit-animation: blink-animation 1s steps(5, start) infinite;
+        }
+        @keyframes blink-animation {
+          to {
+            visibility: hidden;
+          }
+        }
+        @-webkit-keyframes blink-animation {
+          to {
+            visibility: hidden;
+          }
+        }
+        #arrow {
+            position: relative;
+            animation: mymove 3s infinite;
+        }
+        @keyframes mymove {
+            from {left: 0px;}
+            to {left: 200px}
+        }
+        #arrow {
+            width: 200px;
+            height: 100px;
+            display: none;
+        }
+        #desc {
+            display: none;
+        }
+        #on,
+        #off {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <button id="start">Start</button>
+    </center>
+    <div id="first_comment">
+        <center>To find the specific heat of air<br><button id="begin">Let's Begin</button></center>
+    </div>
+    <div id="second_comment">
+        <center>STEP 1: Make the connections<br><button id="begin2">Next</button></center>
+    </div>
+    <div id="third_comment">
+        <center>STEP 2: Switch on the blower</center>
+    </div>
+    <div id="final_comment">
+        <center>Air will flow from blower to heater<br>
+        Thermocouples Aquire temperature</center>
+        </div>
+    <div class="comments">
+        <center>
+            <div id="comments" class="fs-5"></div>
+        </center>
+    </div>
+    <div class="controls">
+        <button id="on" class="btn btn-success"><h1>ON</h1></button>
+        <button id="off" class="btn btn-danger"><h1>OFF</h1></button>
+    </div>
+    <div class="simulation">
+        <img id="blower" src="assets/images/blower.png" alt="blower">
+        <img src="assets/images/rest.PNG" alt="rest" id="rest">
+    </div>
+    <div>
+        <center><img id="arrow" class="mymove" src="assets/images/arrow.png" alt="arrow"></center>
+    </div>
+    <div id="desc">
+        <p><center>Take the reading of the inlet temperature at 9 and the outlet temperature at 10<br>
+        The arrow indicates that the air is flowing.</center></p>
+    </div>
+</body>
+<script>
+    document.getElementById('start').onclick = ()=>{
+        document.getElementById('start').style.display = 'none';
+        document.getElementById('first_comment').style.display = 'block';
+        document.getElementById('second_comment').style.display = 'none';
+        document.getElementById('third_comment').style.display = 'none';
+        document.getElementById('final_comment').style.display = 'none';
+    }
+    document.getElementById('begin').onclick = ()=>{
+        document.getElementById('start').style.display = 'none';
+        document.getElementById('first_comment').style.display = 'none';
+        document.getElementById('second_comment').style.display = 'block';
+        document.getElementById('third_comment').style.display = 'none';
+        document.getElementById('final_comment').style.display = 'none';
+    }
+    document.getElementById('begin2').onclick = ()=>{
+        document.getElementById('start').style.display = 'none';
+        document.getElementById('first_comment').style.display = 'none';
+        document.getElementById('second_comment').style.display = 'none';
+        document.getElementById('third_comment').style.display = 'block';
+        document.getElementById('on').style.display = 'block';
+        document.getElementById('off').style.display = 'block';
+        document.getElementById('final_comment').style.display = 'none';
+    }
+    document.getElementById('on').onclick = ()=>{
+        document.getElementById('start').style.display = 'none';
+        document.getElementById('first_comment').style.display = 'none';
+        document.getElementById('second_comment').style.display = 'none';
+        document.getElementById('third_comment').style.display = 'none';
+        document.getElementById('final_comment').style.display = 'block';
+        document.getElementById('blower').classList.add('blink');
+        document.getElementById('arrow').style.display = "block";
+        document.getElementById('desc').style.display = 'block';
+    }
+    document.getElementById('off').onclick = ()=>{
+        document.getElementById('start').style.display = 'block';
+        document.getElementById('first_comment').style.display = 'none';
+        document.getElementById('second_comment').style.display = 'none';
+        document.getElementById('third_comment').style.display = 'none';
+        document.getElementById('final_comment').style.display = 'none';
+        document.getElementById('blower').classList.remove('blink');
+        document.getElementById('arrow').style.display = "none";
+        document.getElementById('desc').style.display = 'none';
+        document.getElementById('on').style.display = 'none';
+        document.getElementById('off').style.display = 'none';        
+    }
+    // document.getElementById('blower').onclick = ()=> {
+    //     console.log('you clicked on the blower')
+    // }
+    // document.getElementById('rest').onclick = ()=> {
+    //     console.log('you clicked on the rest')
+    // }
+</script>
+</html>

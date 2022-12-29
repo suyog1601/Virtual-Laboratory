@@ -1,0 +1,131 @@
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/graph.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <form action="plot" method="POST">
+    {% csrf_token %}
+    <table>
+            <tr>
+                <th>Time</th>
+                <th>T1</th>
+                <th>T2</th>
+                <th>T3</th>
+                <th>T4</th>
+                <th>T5</th>
+                <th>T6</th>
+                <th>V</th>
+                <th>I</th>
+                <th>Volume<br>
+                    Measured
+                </th>
+                <th>Time<br>
+                    Taken
+                </th>
+            </tr>
+            <tr>
+                <td><input type="text"></td>
+                <td><input type="text" name="val11"></td>
+                <td><input type="text" name="val21"></td>
+                <td><input type="text" name="val31"></td>
+                <td><input type="text" name="val41"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td rowspan="8"><input type="text"></td>
+                <td rowspan="8"><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text"></td>
+                <td><input type="text" name="val12"></td>
+                <td><input type="text" name="val22"></td>
+                <td><input type="text" name="val32"></td>
+                <td><input type="text" name="val42"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text"></td>
+                <td><input type="text" name="val13"></td>
+                <td><input type="text" name="val23"></td>
+                <td><input type="text" name="val33"></td>
+                <td><input type="text" name="val43"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text"></td>
+                <td><input type="text" name="val14"></td>
+                <td><input type="text" name="val24"></td>
+                <td><input type="text" name="val34"></td>
+                <td><input type="text" name="val44"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text"></td>
+                <td><input type="text" name="val15"></td>
+                <td><input type="text" name="val25"></td>
+                <td><input type="text" name="val35"></td>
+                <td><input type="text" name="val45"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text"></td>
+                <td><input type="text" name="val16"></td>
+                <td><input type="text" name="val26"></td>
+                <td><input type="text" name="val36"></td>
+                <td><input type="text" name="val46"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text"></td>
+                <td><input type="text" name="val17"></td>
+                <td><input type="text" name="val27"></td>
+                <td><input type="text" name="val37"></td>
+                <td><input type="text" name="val47"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="text"></td>
+                <td><input type="text" name="val18"></td>
+                <td><input type="text" name="val28"></td>
+                <td><input type="text" name="val38"></td>
+                <td><input type="text" name="val48"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+                <td><input type="text"></td>
+            </tr>
+    </table>
+    <br><button style="background-color: aqua;">graph</button>
+    </form>
+    <div>
+    <img src="data:image/png;base64, {{chart|safe}}">
+    </div>
+</body>
+</html>
+{% endblock content%}

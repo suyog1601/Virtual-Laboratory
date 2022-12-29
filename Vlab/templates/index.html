@@ -1,0 +1,301 @@
+{% block content%}
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/index1.css' %}">
+    <!--Scripts for icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <title>Virtual Lab | Home</title>
+    <link rel = "icon" href = 
+    "{% static 'images/sggs.png' %}" 
+            type = "image/x-icon">
+    <style>
+      .logo {
+        width: 80px;
+        height: 60px;
+      }
+      /*-------------*/
+      .campus {
+        margin: 60px 6px;
+        /* margin-top: 100px;; */
+      }
+      .campus-col-img {
+        width: 100px;
+        height: 100px;
+      }
+      #campus-col {
+        margin:50px auto;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      #campus-col:hover {
+        background-color: rgba(24,90,219,0.6);
+        transition-property: all;
+        transition-duration: 0.6s;
+      }
+      a {
+        text-decoration: none;
+      }
+      .button {
+        color: white;
+      }
+
+      .button:hover {
+        color: #fff;
+      }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <!-- <img src="assets/images/fix.png" class="img-responsive" width="10px" height="10px" alt=""> -->
+          <a class="navbar-brand" href="index.html">Virtual Labs</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <!-- <li class="nav-item">
+                <a class="nav-link" id="hit" href="#">How it works</a>
+              </li> -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Select Lab</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'DOM' %}">Dynamics Of Machine</a></li>
+                  <li><a class="dropdown-item" href="{% url 'course' %}">Heat Transfer</a></li>
+                  <li><a class="dropdown-item" href="{% url 'course' %}">Thermodynamics</a></li>
+                  <!-- <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                </ul>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}" tabindex="-1" aria-disabled="true">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'logout' %}" tabindex="-1" aria-disabled="true">Logout</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}" tabindex="-1" aria-disabled="true">Are you a teacher?</a>
+              </li>
+              {% endif %}
+            </ul>
+            <!--<form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>-->
+          </div>
+        </div>
+      </nav>
+      <!-- <div id="how_it_works1" class="how_it_works">
+        <span class="fs-1">Step 1:</span><br>
+        <p class="fs-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit maiores officiis inventore quas perspiciatis ipsam explicabo itaque eaque tenetur tempora, exercitationem placeat distinctio maxime officia excepturi quisquam, expedita quibusdam quidem.</p><br>
+        <button id="next1">Next ></button>
+      </div>
+      <div id="how_it_works2" class="how_it_works">
+        <span class="fs-1">Step 2:</span><br>
+        <p class="fs-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit maiores officiis inventore quas perspiciatis ipsam explicabo itaque eaque tenetur tempora, exercitationem placeat distinctio maxime officia excepturi quisquam, expedita quibusdam quidem.</p><br>
+        <button id="next2">Next ></button>
+      </div>
+      <div id="how_it_works3" class="how_it_works">
+        <span class="fs-1">Step 3:</span><br>
+        <p class="fs-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit maiores officiis inventore quas perspiciatis ipsam explicabo itaque eaque tenetur tempora, exercitationem placeat distinctio maxime officia excepturi quisquam, expedita quibusdam quidem.</p><br>
+        <button id="getStarted">Get Started</button>
+      </div> -->
+      
+      <div class="banner col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="text-center container">
+            <div style="border-radius: 12px; padding: 50px auto 50px; color:rgb(241, 245, 46)">
+                <br><br><b><span style="font-weight: 400; "class="display-2">Welcome To The Virtual Labs Of SGGSIE&T</span>
+                  <br><h2>(Department of Mechanical Enginnering)</h2>
+                  <br></b>
+                </div>
+                <button class="btn btn-outline-primary px-4 button"> <a href="#new" style="color: #fff; padding: 10px; font-size: 20px;">Let's Explore</a></button>
+        </div>
+      </div>
+     
+      <div class="p-4" id="new">
+
+       <div class="campus col-lg-12 col-md-12 col-sm-12 col-xs-12">
+         <center><span class="display-3 text-center" style="margin-bottom: 50px;"><b>What's new here?</b></span><br>
+           <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+             <div id="campus-col" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+               <center><img class="campus-col-img" src="{% static 'images/content.png' %}" alt="image1"><br>
+               <span class="fs-4 p-5 m-3"><b>Precise Content</b></span></center>
+             </div>
+             <div id="campus-col" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+               <center><img class="campus-col-img" src="{% static 'images/3d-movie.png' %}" alt="image1"><br>
+                 <span class="fs-4 p-5 m-3"><b>Animated Setup</b></span></center>
+             </div>
+             <div id="campus-col" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+               <center><img class="campus-col-img" src="{% static 'images/wired-gloves.png' %}" alt="image1"><br>
+                 <span class="fs-4 p-5 m-3"><b>Simulations</b></span></center>
+             </div>
+           </div>
+           <div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+             <div id="campus-col" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+               <center><img class="campus-col-img" src="{% static 'images/clipboard.png' %}" alt="image1"><br>
+                 <span class="fs-4 p-5 m-3"><b>Embeded Evaluations</b></span></center>
+             </div>
+             <div id="campus-col" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+               <center><img class="campus-col-img" src="{% static 'images/dashboard.png' %}" alt="image1"><br>
+                 <span class="fs-4 p-5 m-3"><b>Teacher's Dashboard</b></span></center>
+             </div>
+             <div id="campus-col" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+               <center><img class="campus-col-img" src="{% static 'images/software.png' %}" alt="image1"><br>
+                 <span class="fs-4 p-5 m-3"><b>Frequent Updates</b></span></center>
+             </div>
+             <hr style="height: 2px; background-color: rgb(24,90,219);">
+           
+      
+    
+     <article class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <!-- <center><span class="display-4">A word from the professors.</span></center><br> -->
+        <div class="container pb-5">
+          <center><span class="display-3 text-center" style="margin-bottom: 50px;"><b>Words of Wisdom</b></span>
+            
+            <hr style="height: 2px; background-color: rgb(24,90,219);">
+            <!-- testimonials carousel  -->
+            <div id="testimonialsCarousel" class="carousel slide" data-ride="carousel" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active h-100">
+                  <p class = "text-center fw-bold">Pro. R.P. Parvekar</p>
+                  <p class = "text-center">Head | Department of Mechanical Engineering</p>
+                  <p class = "text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui illo nam, nobis quas autem dolorem provident accusamus voluptates consequatur debitis dolores at quam voluptatum rerum rem perspiciatis, numquam, similique aliquam.</p>
+                </div>
+                <div class="carousel-item h-100">
+                  <p class = "text-center fw-bold">Dr. Y. V. Joshi</p>
+                  <p class = "text-center">Director | SGGSIE&T</p>
+                  <p class = "text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi reprehenderit est, sint qui hic vitae molestiae blanditiis illo! Laudantium quidem porro corrupti minus, suscipit maxime? Aliquid laudantium temporibus accusantium modi.</p>
+                </div>
+                <div class="carousel-item h-100">
+                  <p class = "text-center fw-bold">Prof. D. T. Mehta</p>
+                  <p class = "text-center">Faculty | Department of Mechanical Engineering</p>
+                  <p class = "text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci beatae voluptatem ab explicabo dignissimos? Nihil hic quidem doloremque. Laboriosam tenetur tempore neque expedita atque earum deleniti cum beatae sequi labore?</p>
+                </div>
+                <div class="carousel-item h-100">
+                  <p class = "text-center fw-bold">Dr. A. R. Kadam</p>
+                  <p class = "text-center">Faculty | Department of Mechanical Engineering</p>
+                  <p class = "text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi reprehenderit est, sint qui hic vitae molestiae blanditiis illo! Laudantium quidem porro corrupti minus, suscipit maxime? Aliquid laudantium temporibus accusantium modi.</p>
+                </div>
+              </div>
+            </div>
+            <hr style="height: 2px; background-color: rgb(24,90,219);">
+            <!-- testimonials carousel ends  -->
+          </div>
+      </article>
+     <div class="container pb-5">
+      <center><span class="display-3 text-center" style="margin-bottom: 50px;"><b>Testimonials</b></span>
+      <hr style="height: 2px; background-color: rgb(24,90,219);">
+      <!-- testimonials carousel  -->
+      <div id="testimonialsCarousel" class="carousel slide" data-ride="carousel" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active h-100">
+            <p class = "text-center fw-bold">SGGSEI&T</p>
+            <p class = "text-center">Nanded, Maharashtra</p>
+            <p class = "text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui illo nam, nobis quas autem dolorem provident accusamus voluptates consequatur debitis dolores at quam voluptatum rerum rem perspiciatis, numquam, similique aliquam.</p>
+          </div>
+          <div class="carousel-item h-100">
+            <p class = "text-center fw-bold">IITB</p>
+            <p class = "text-center">Mumbai, Maharashtra</p>
+            <p class = "text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci beatae voluptatem ab explicabo dignissimos? Nihil hic quidem doloremque. Laboriosam tenetur tempore neque expedita atque earum deleniti cum beatae sequi labore?</p>
+          </div>
+          <div class="carousel-item h-100">
+            <p class = "text-center fw-bold">COEP</p>
+            <p class = "text-center">Pune, Maharastra</p>
+            <p class = "text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi reprehenderit est, sint qui hic vitae molestiae blanditiis illo! Laudantium quidem porro corrupti minus, suscipit maxime? Aliquid laudantium temporibus accusantium modi.</p>
+          </div>
+        </div>
+      </div>
+      <hr style="height: 2px; background-color: rgb(24,90,219);">
+      <!-- testimonials carousel ends  -->
+    </div>
+</article>
+      
+     <!-- <hr style="height: 2px; background-color: rgb(24,90,219);"> -->
+      
+     <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="container" data-aos="flip-up"  data-aos-duration="3000">
+          <div class="p-5">
+
+            <h2 class = "display-3 text-center mt-1 mb-5 bordered-bottom"><b>Available Labs!</b></h2> -->
+            <!--<hr style="height: 2px; background-color: rgb(24,90,219);"> -->
+
+            
+            <!-- <div class="blog row align-items-center justify-content-center"> -->
+              <!-- blog cards -->
+              <!-- <div class="col-sm-12 col-lg-4 btn btn-info">
+                <div class = "d-flex flex-column align-items-center justify-content-center mb-4">
+                  <h3 class = "pt-3">Dynamics Of Machines</h3>
+                  
+                </div>
+              </div> -->
+<!-- 
+              <div class="col-sm-12 col-lg-4 btn btn-warning m-2">
+                <div class = "d-flex flex-column align-items-center justify-content-center mb-4">
+                  <h3 class = "pt-3">Heat Transfer</h3>
+                  <p>Coming Soon...</p>
+                </div>
+              </div>
+
+              <div class="col-sm-12 col-lg-4 btn btn-warning m-2">
+                <div class = "d-flex flex-column align-items-center justify-content-center mb-4">
+                  <h3 class = "pt-3">Thermodynamics</h3>
+                  <p>Coming Soon...</p> -->
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+      </div>
+
+      <footer class="p-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <h2 class="footer-heading"><a href="#" class="logo">Virtaul Labs SGGSIE&T</a></h2>
+                    <p class="menu">
+                        <a href="#" class="p-2">Home |</a>
+                        <a href="#" class="p-2">About |</a>
+                        <a href="#" class="p-2">Labs |</a>
+                        <a href="#" class="p-2">Support |</a>
+                        <a href="#" class="p-2">Contact |</a><br>
+                        <a href="#" class="fa fa-facebook"></a>
+                        <a href="#" class="fa fa-twitter"></a>
+                        <a href="#" class="fa fa-linkedin"></a>
+                        <a href="#" class="fa fa-instagram"></a></p>
+                        <p>Copyright &copy; 2022 | Yash Raut | Suyog Moon 
+                          <br>Department of Mechanical Enginnering | SGGSIE&T, Nanded</p>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="{% static 'scripts/index.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+</html>
+{% endblock content%}

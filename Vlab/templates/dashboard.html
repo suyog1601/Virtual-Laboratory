@@ -1,0 +1,210 @@
+{% block content%}
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/dashboard1.css' %}">
+    <!--Scripts for icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel = "icon" href = 
+    "{% static 'images/sggs.png' %}" 
+            type = "image/x-icon">
+    <style>
+      .teachers_posts {
+        margin-top: 10px;
+        border: 2px #ddd solid;
+        padding: 20px
+      }
+    </style>
+    <title>Teacher's Dashbord</title>
+    <script type="text/javascript">
+     //<![CDATA[ 
+     // array of possible countries in the same order as they appear in the country selection list 
+     var countryLists = new Array(20) 
+     countryLists["empty"] = ["Select a Experiment"]; 
+     countryLists["Strength of material"] = ["Tension test on M.S. and TOR bar", "Bending test", "Shear test", "Torsion test", "Impact test", "Deflection of beam"]; 
+     countryLists["Mechanical Instrumentation"] =  ["Study of Generalized Measurement System with typical instrument", "Temperature measurement using Thermocouple, Themister and Pyrometers", "Experiment on pressure measurement:- U-tube manometer, Bourdon tube, DeadWeight tester", "Flow measurement using Rota meter / Water "]; 
+     countryLists["Dynamics of Machines"] = ["To verify the relation",
+                                            "To determine the Radius of Gyration ‘K’ of given compound pendulum and To verify the relation",
+                                            "To determine the radius of gyration of given bar by using Bi-Filer suspension",
+                                            "To study the longitudinal vibrations of helical spring",
+                                            "To study the un-damped free vibration of equivalent spring mass system",
+                                            "To study the forced vibrations of equivalent spring mass system",
+                                            "To study the torsional vibration (un-damped) of single rotor shaft system",
+                                            "To study the free vibration of two rotor system and to determine the natural frequency of vibration theoretically and experimentally",
+                                            "To study the damped torsional oscillations and determine the damping coefficient Ct",
+                                            "To verify the Dunkerley’s Rule",
+                                            "To study the forced lateral vibrations of the beam fir different damping"]; 
+     countryLists["Applied Thermodynamic"]= ["Study of Cochran boiler", "Study of Babcock and Wilcox ", "Study of Lancashire ", "Study of Locomotive"]; 
+     /* CountryChange() is called from the onchange event of a select element. 
+     * param selectObj - the select object which fired the on change event. 
+     ["To verify the relation",
+                                             "To determine the Radius of Gyration ‘K’ of given compound pendulum and To verify the relation",
+                                             "To determine the radius of gyration of given bar by using Bi-Filer suspension",
+                                             "To study the longitudinal vibrations of helical spring",
+                                             "To study the un-damped free vibration of equivalent spring mass system",
+                                             "To study the forced vibrations of equivalent spring mass system",
+                                             "To study the torsional vibration (un-damped) of single rotor shaft system",
+                                             "To study the free vibration of two rotor system and to determine the natural frequency of vibration theoretically and experimentally",
+                                             "To study the damped torsional oscillations and determine the damping coefficient Ct",
+                                             "To verify the Dunkerley’s Rule",
+                                             "To study the forced lateral vibrations of the beam fir different damping"];
+     */ 
+     function countryChange(selectObj) { 
+     // get the index of the selected option 
+     var idx = selectObj.selectedIndex; 
+     // get the value of the selected option 
+     var which = selectObj.options[idx].value; 
+     // use the selected option value to retrieve the list of items from the countryLists array 
+     cList = countryLists[which]; 
+     // get the country select element via its known id 
+     var cSelect = document.getElementById("country"); 
+     // remove the current options from the country select 
+     var len=cSelect.options.length; 
+     while (cSelect.options.length > 0) { 
+     cSelect.remove(0); 
+     } 
+     var newOption; 
+     // create new options 
+     for (var i=0; i<cList.length; i++) { 
+     newOption = document.createElement("option"); 
+     newOption.value = cList[i];  // assumes option string and value are the same 
+     newOption.text=cList[i]; 
+     // add the new option 
+     try { 
+     cSelect.add(newOption);  // this will fail in DOM browsers but is needed for IE 
+     } 
+     catch (e) { 
+     cSelect.appendChild(newOption); 
+     } 
+     } 
+     } 
+    //]]>
+    </script>
+</head>
+<body>
+    <nav style="max-width: 100%;" class="navbar fixed-top navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">SGGSV-Lab</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'home'%}">Home</a>
+              </li>
+              <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Select Lab
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="course.html">Heat transfer</a></li>
+                  <li><a class="dropdown-item" href="course.html">Manufacturing processes 2</a></li>
+                  <li><a class="dropdown-item" href="course.html">Dynamics of Machines (DOM)</a></li>
+                  <li><a class="dropdown-item" href="course.html">Design of Machine (DME)</a></li>
+                </ul>
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link active" href="{% url 'logout'%}" tabindex="-1" aria-disabled="true">Logout</a>
+              </li>
+            </ul>
+            <!--<form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>-->
+          </div>
+        </div>
+      </nav>
+      <div class="dashboard row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="dashboard-section col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="profile text-center">
+                <img class="img-fluid" src="{% static 'images/user.png' %}" alt="Profile picture"><br>
+                <span class="p-2 fs-4"><b>{{user.username}}</b></span><br>
+                <a class="btn btn-primary dropdown-toggle m-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Select Lab
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{% url 'course'%}">Heat transfer</a></li>
+                <li><a class="dropdown-item" href="{% url 'course'%}">Applied Thermodynamics</a></li>
+                <li><a class="dropdown-item" href="{% url 'course'%}">Dynamics of Machines (DOM)</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <form action="postlink" method="POST" class="form-control form-group form">
+              {% csrf_token %}
+                <span class="p-2 fs-4">Subject name</span><br>
+                <div class="p-2">
+                  <label class="p-2" for="continent">Subject name:</label>
+                  <select class="p-2" id="continent" style="width: 100%;" type="text" name="title" onchange="countryChange(this);" required="required">
+                    <option value="empty">Select a Subject</option>
+                    <option value="Strength of material">Strength of material</option>
+                    <option value="Mechanical Instrumentation">Mechanical Instrumentation</option>
+                    <option value="Dynamics of Machines">Dynamics of Machines</option>
+                    <option value="Applied Thermodynamic">Applied Thermodynamic</option>
+                  </select>
+                </div>
+                <br>
+                <div class="p-2">
+                <label class="p-2" for="country">Experiment name:</label>
+                <select class="p-2" type="text" id="country" style="width: 100%;" name="experiment1" required="required">
+                  <option value="0">Select a Experiment</option>
+                </select>
+                </div>
+                <br>
+                <div class="p-2"><label class="p-2" for="link">Link to the google form: </label><input class="p-2" type="text" style="width: 100%;" name="link" placeholder="Link for the evaluation" required="required"></div><br>
+                <div class="p-2"><button type="submit" class="btn btn-primary mb-3">Post the test</button></div>
+            </form>
+            </div>
+        </div>
+        <br><br>
+        <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <center><b><span class="display-5">Your posts</span></b></center><br>
+          {% for post in posts %}
+          <div class="teachers_posts col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <span class="fs-2">{{post.name}}</span><br>
+            <span class="fs-4"><a href="{{post.formlink}}">{{post.formlink}}</a></span><br>
+            <span class="fs-5">{{post.created_at}}</span>
+          </div>
+          {% endfor %}
+        </div>
+        <footer class="p-4">
+          <div class="container">
+              <div class="row justify-content-center">
+                  <div class="col-md-12 text-center">
+                      <h2 class="footer-heading"><a href="#" class="logo">Virtaul Labs SGGSIE&T</a></h2>
+                      <p class="menu">
+                          <a href="#" class="p-2">Home |</a>
+                          <a href="#" class="p-2">About |</a>
+                          <a href="#" class="p-2">Labs |</a>
+                          <a href="#" class="p-2">Support |</a>
+                          <a href="#" class="p-2">Contact |</a><br>
+                          <a href="#" class="fa fa-facebook"></a>
+                          <a href="#" class="fa fa-twitter"></a>
+                          <a href="#" class="fa fa-linkedin"></a>
+                          <a href="#" class="fa fa-instagram"></a></p>
+                          <p>Copyright &copy; 2022 | Yash Raut | Suyog Moon 
+                            <br>Department of Mechanical Enginnering | SGGSIE&T, Nanded</p>
+                  </div>
+              </div>
+              
+                  </div>
+              </div>
+          </div>
+      </footer>
+</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="{% static 'scripts/dashboard.js'%}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+</html>
+{% endblock content%}
