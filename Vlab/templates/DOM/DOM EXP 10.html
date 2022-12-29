@@ -1,0 +1,414 @@
+{% block content%}
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/experiment.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index1.css' %}">
+    <!--Scripts for icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Experiment name</title>
+    <link rel = "icon" href = 
+    "{% static 'images/sggs.png' %}" 
+            type = "image/x-icon">
+    <style>
+      @media (max-width: 1200px) {
+          #diagram {
+              width: 300px;
+              height: 100px;
+          }
+      }
+    </style>
+</head>
+<body>
+  <nav style="max-width: 100%;" class="navbar fixed-top navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">SGGSV-Lab</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Select Lab
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'course' %}">Heat transfer</a></li>
+              <li><a class="dropdown-item" href="{% url 'course' %}">Manufacturing processes 2</a></li>
+              <li><a class="dropdown-item" href="{% url 'DOM' %}">Dynamics of Machines (DOM)</a></li>
+              <li><a class="dropdown-item" href="{% url 'course' %}">Design of Machine (DME)</a></li>
+              <!-- <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+            </ul>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}" tabindex="-1" aria-disabled="true">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'logout' %}" tabindex="-1" aria-disabled="true">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}" tabindex="-1" aria-disabled="true">Are you a teacher?</a>
+          </li>
+          {% endif %}
+        </ul>
+        <!--<form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>-->
+      </div>
+    </div>
+  </nav>
+  <section style="width: 100%;" class="exp_nav row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div style="padding: 20px auto;" id="intro_and_pro_btn" class="text-center col-lg-2 col-md-2 col-sm-12 col-xs-12">INTRODUCTION</div>
+    <div style="padding: 20px auto;" id="simulation_btn" class="text-center col-lg-2 col-md-2 col-sm-12 col-xs-12">SIMULATION</div>
+    <div style="padding: 20px auto;" id="observe_btn" class="text-center col-lg-2 col-md-2 col-sm-12 col-xs-12">OBSERVATIONS</div>
+    <div style="padding: 20px auto;" id="calc_btn" class="text-center col-lg-2 col-md-2 col-sm-12 col-xs-12">CALCULATIONS</div>
+    <div style="padding: 20px auto;" id="result_btn" class="text-center col-lg-2 col-md-2 col-sm-12 col-xs-12">RESULT</div>
+    <div style="padding: 20px auto;" id="eval_btn" class="text-center col-lg-2 col-md-2 col-sm-12 col-xs-12">EVALUATIONS</div>
+  </section>
+  <!--Introduction and Procedure-->
+  <article id="intro_and_pro" class="subsection container">
+      <span class="fs-3">Introduction</span><br>
+      <hr>
+      <p class="fs-6">
+        <ul>
+            <li>Aim:- To verify the Dunkerley’s Rule. </b></li>
+            <li><b>1/F <sup>2</sup> = 1/Fl <sup>2</sup>+ 1/Fb <sup>2</sup></b></li>
+            <li> F = Natural frequency of given beam (considering the weight of the beam) with central load 
+              W </li>
+            <li>FL = Natural frequency of given beam (neglecting the weight of the beam) with central load to 
+              be calculated from formula</li>
+              <li>Fl = &radic;<span style="text-decoration: overline;">48xExIxG/4&pi;<sup>2</sup>xL<sup>3</sup>xW&nbsp;</span></li>
+            <li>Where, W = Central load of the beam or weight attached. <br>
+              L = Length of the beam <br>
+              Fb = Natural frequency of beam alone</li>
+            
+        </ul>
+        <br>
+        <br>
+        <span class="fs-3">Procedure</span><br>
+        <hr>
+        <b>Description of Setup:- </b><br>
+        
+ The general arrangement for carrying out the experiment is as shown in Fig.1, A 
+rectangular section bar is supported in trunion fittings at each end. Each trunion is pivoted in 
+ball bearings carried in housing. Each bearing housing is fixed to the vertical frame member. 
+The beam carries at its centre a weight platform.<br>
+        <center><img id="diagram" src="{% static 'images/3rd year/EXP10/dom-10.png' %}" alt="experiment#1"></center>
+        <br>
+        <b>Procedure</b><br>
+        <ol>
+          <li>Arrange the set up as shown in Fig.1 with some weight ‘W’ clamped to weight platform.</li>
+          <li> Pull the platform and release it to set the system into natural vibrations. 
+          </li>
+          <li> Find periodic time T and frequency of vibrations F by measuring time for some 
+            oscillations.</li>
+          <li>Repeat the experiment by putting additional masses on weight platform. 
+          </li>
+          <li> Plot the graph of 1/F2
+            v/s W. </li>
+          
+        </ol><br>
+        <b>Precautions</b><br>
+        <ol>
+          <li>.</li>
+        </ol><br>
+        <b>Specifications</b>
+        <table class="table">
+          <tr>
+            <td>Length of beam L</td>
+            <td>: 103cm</td>
+          </tr>
+          <tr>
+            <td>Weight per cm of beam</td>
+            <td>: 0.014Kg/cm</td>
+          </tr>
+          <tr>
+            <td>Section of the beam</td>
+            <td>: 2.6 X 0.73</td>
+          </tr><br>
+          <tr>
+            <td>Weight of beam </td>
+            <td>: 1.5kg</td>
+          </tr>
+        </table><br>
+  </article>
+  <!--Simulation-->
+  <article id="simulation" class="subsection container">
+    <p class="fs-5"><center><b>Coming Soon!</b></center></p><br>
+  </article>
+  <article id="calc" class="subsection container">
+    <span class="fs-3">Calculations</span><br><hr><br>
+    <p class="fs-6">
+      1) Find the natural Frequency of vibration of the beam given by equation 
+      <br>
+      Fb = &pi;/2L<sup>2</sup>&radic;<span style="text-decoration: overline;">GEl/W<sup>2</sup>&nbsp;</span><br>
+      Where, W = Wt. of beam per unit length <br>
+      = weight of beam / Length of Beam <br>
+      I = M.I of the beam section = bh<sup>3</sup>/12 <br>
+      E = Modulus of elasticity = 2 x 10<sup>6</sup> kg/cm^2 <br>
+      <br>
+      2) TExpt = t/n FExpt = 1/TExpt <br><br>
+
+      3) Plot the graph of 1/F<sup>2</sup> Vs ‘w’ intercept of the graph with w = 0 gives the value of 
+      frequency Fb of the beam. 
+      <br> <br>
+      4) Compare the values of natural frequency of beam obtained by using theoretical expression 
+      and that obtained from graph
+
+  </p>
+  </article>
+</article>
+
+<!-- Observation-->
+
+<article id="observe" class="subsection container">
+  <span class="fs-3"><b>Observation 1 :</b></span>
+  <hr>
+  <div class="table-responsive">
+    <form action="DOMEXP10" method="POST">
+      {% csrf_token %}
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th scope="col">Sr. No.<br></br></th>
+          <th scope="col">Weight attached<br>W(Kg)</br></th>
+          <th scope="col">No. of oscillations<br>K(Kg/cm)</br></th>
+          <th scope="col">Time for 'n' oscillations<br>t(sec)</br></th>
+          <th scope="col">Periodic time<br>T(sec)</br></th>
+          <th scope="col">Natural Frequency (Exp)<br>fn(Cps)</br></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td><input type="text" name="W1"></td>
+          <td><input type="text" name="K1"></td>
+          <td><input type="text" name="t1"></td>
+          <td>{{T1}}</td>
+          <td>{{Fn1}}</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td><input type="text" name="W2"></td>
+          <td><input type="text" name="K2"></td>
+          <td><input type="text" name="t2"></td>
+          <td>{{T2}}</td>
+          <td>{{Fn2}}</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td><input type="text" name="W3"></td>
+          <td><input type="text" name="K3"></td>
+          <td><input type="text" name="t3"></td>
+          <td>{{T3}}</td>
+          <td>{{Fn3}}</td>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <hr>
+  <span class="fs-3"><b>Observation 2 :</b></span>
+  <div class="table-responsive">
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th scope="col">Sr. No.</th>
+          <th scope="col">Weight attached (Kg)</th>
+          <th scope="col">FL</th>
+          <th scope="col">1/F^2</th>
+          
+      </thead>
+      <hr>
+      <tbody>
+        <tr>
+
+          <th scope="row">1</th>
+          <td><input type="text" name="W1"></td>
+          <td>{{FL1}}</td>
+          <td>{{F1}}</td>
+        </tr>
+        <tr>
+
+          <th scope="row">2</th>
+          <td><input type="text" name="W2"></td>
+          <td>{{FL2}}</td>
+          <td>{{F2}}</td>
+        </tr>
+        <hr>
+        <br>
+        <tr>
+          <th scope="row">3</th>
+          <td><input type="text" name="W3"></td>
+          <td>{{FL3}}</td>
+          <td>{{F3}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br><button class="btn btn-outline-primary px-4 button">Calculate & Plot Graph</button>
+    <!--<button class="btn btn-outline-primary px-4 button"> <a href="#new" style="color: rgb(30, 35, 51); padding: 10px; font-size: 20px;">Calculate & Plot Graph</a></button>-->
+  </form>
+  <div>
+  <img src="data:image/png;base64, {{chart|safe}}">
+  </div>
+  <br>
+  <hr>
+  <span class="fs-3"><b>Sample Observation :</b></span>
+  <hr>
+  <div class="table-responsive">
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th scope="col">Sr. No.<br></br></th>
+          <th scope="col">Weight attached<br>W(Kg)</td></br></th>
+          <th scope="col">No. of oscillations<br>K(Kg/cm)</td></br></th>
+          <th scope="col">Time for 'n' oscillations<br>t(sec)</td></br></th>
+          <th scope="col">Periodic time<br>T(sec)</td></br></th>
+          <th scope="col">Natural Frequency (Exp)<br>fn(Cps)</td></br></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>3</td>
+          <td>10</td>
+          <td>4.5</td>
+          <td>0.45</td>
+          <td>2.22</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>4</td>
+          <td>10</td>
+          <td>4.0</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>5</td>
+          <td>10</td>
+          <td>3</td>
+          <td>0.3</td>
+          <td>3.33</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th scope="col">Sr. No.<br></br></th>
+          <th scope="col">Weight attached (Kg)<br></br></th>
+          <th scope="col">FL</th>
+          <th scope="col">1/F^2</th>
+          
+      </thead>
+      <tbody>
+        <tr>
+         
+          <td>1</td>
+          <td>3</td>
+          <td>7.83</td>
+          <td>0.01636</td>
+        </tr>
+        <tr>
+          
+          <td>2</td>
+          <td>4</td>
+          <td>6.78</td>
+          <td>0.02181</td>
+        </tr>
+        <tr>
+          
+          <td>3</td>
+          <td>5</td>
+          <td>6.06</td>
+          <td>0.02728</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</article>
+  <article id="result" class="subsection container">
+    <span class="fs-3">Result</span><br>
+    <p class="fs-6">By studying the following cases we can say that Dunkerley’s Rule verified.</p>
+  </article>
+
+  <!--EVALUATION-->
+
+  <article id="eval" class="subsection container">
+    <span class="fs-3">Evaluation</span><br>
+    <!-- <p style="border: 1px solid #185adb; padding: 40px 20px; margin: 30px auto;">
+      <span class="fs-4">Test 1:</span><br>
+      <small><b>Description:</b>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus in dolorem amet. Saepe ad minus corrupti rem non tempora assumenda nisi unde voluptatum placeat a sapiente natus temporibus, error odit.</small><br>
+      <a class="btn btn-primary" href="#">Appear for the test</a><br>
+      <small>Posted on: 21/08/2021,<br>Posted By: Mr. Kadam (SGGS Faculty)</small>
+    </p> -->
+    <iframe src="{{url1.formlink}}?embedded=true" width="100%" height="800px" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+  </article>
+  <footer style="margin-top: 100px;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <span class="fs-3">SGGSV-Lab</span><br>
+        <hr>
+        <p class="fs-6">
+            &copy; Copyright. All rights are reserved by SGGSIE&T, Vishnupuri, Nanded, Maharashtra.<br>
+        </p>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <span class="fs-3">Created by:</span><br>
+      <hr>
+      <ul style="list-style: none;">
+          <li>Yash Raut (Mechanical)</li>
+          <li>Suyog Moon (Mechanical)</li>
+          <li>Vedant Totla (Mechanical)</li>
+          <li>Irshaduddin Chowdhury (Mechanical)</li>
+      </ul>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <span class="fs-3">Contact us:</span><br>
+      <hr>
+      <p class="fs-6">
+          Visist our site: <a href="https://onlinesggs.org/">Online SGGS</a><br>
+          Mail us at: yvjoshi@sggs.ac.in<br>
+          Call us on: +91 1234567890, +91 9876543210<br>
+          <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-linkedin"></a>
+          <a href="#" class="fa fa-instagram"></a>
+      </p>
+    </div>
+  </footer>
+</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="{% static 'scripts/experiment.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+<!-- Latex to html convertor -->
+<script type="text/javascript" async="" src="{% static 'scripts/latexScript.js' %}">
+</script>
+<script>
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+  </script>
+</html>
+{% endblock content%}
